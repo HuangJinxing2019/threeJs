@@ -1,0 +1,18 @@
+{
+  "name": "threejs",
+  "version": "1.0.0",
+  "description": "three.js学习历程",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^4.4.11"
+  },
+  "dependencies": {
+    "three": "^0.157.0"
+  }
+}
