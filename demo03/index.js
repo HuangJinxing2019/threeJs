@@ -62,7 +62,7 @@ let normalTexture = textureLoader.load(new URL('./assets/textures/normal.jpg', i
 // });
 let material = new THREE.MeshStandardMaterial({
     color: '#ffff00',
-    side: THREE.DoubleSide, // 父级Material公共材质属性。定义渲染那一面。 默认为THREE.FrontSide（前面）。其他选项有THREE.BackSide（背面） 和 THREE.DoubleSide（双面）。
+    side: THREE.DoubleSide, // 基类Material公共材质属性。定义渲染那一面。 默认为THREE.FrontSide（前面）。其他选项有THREE.BackSide（背面） 和 THREE.DoubleSide（双面）。
     map: mapTexture,
     transparent: true,
     alphaMap: alphaTexture,
