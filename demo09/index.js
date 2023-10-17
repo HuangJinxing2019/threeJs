@@ -159,11 +159,13 @@ let raycaster = new THREE.Raycaster();
 // 创建存储鼠标坐标对象
 let pointer = new THREE.Vector2();
 const redMaterial = new THREE.MeshBasicMaterial({ color: '#ff0000' })
+
 function mousemoveChange(event){
     pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
     pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
     // 通过摄像机和鼠标位置更新射线
     raycaster.setFromCamera(pointer, camera);
+    gsap.to(camera.position, { x: pointer.x * 3, direction: 1 })
     // 计算物体和射线的焦点
     const intersects = raycaster.intersectObjects(rayCubeArr);
     intersects.forEach(item => {
@@ -172,6 +174,11 @@ function mousemoveChange(event){
 }
 
 function scrollAnimation(index) {
+    gsap.fromTo(
+        `.page${index} h1`,
+        { x: -300 },
+        { x: 0, rotate: "+=360", duration: 1 }
+    );
     if (index !== 2) {
         animationArr[index].pause();
         gsap.to(
