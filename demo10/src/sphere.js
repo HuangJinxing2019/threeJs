@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from "three/addons/controls/OrbitControls";
 import * as CANNON from 'cannon-es';
+import {cloneUniforms} from "three/src/renderers/shaders/UniformsUtils";
 
 // 创建一个renderer
 const renderer = new THREE.WebGLRenderer();
@@ -44,7 +45,7 @@ let planeGeometry = new THREE.PlaneGeometry(20, 20);
 const plan = new THREE.Mesh(planeGeometry, standardMaterial);
 plan.receiveShadow = true
 plan.rotation.x = - Math.PI / 2
-plan.position.y = -8
+plan.position.y = -5
 scene.add(plan)
 
 // 灯光
@@ -75,6 +76,52 @@ const wordBody = new CANNON.Body({
 });
 // 将物体添加到物理世界
 world.addBody(wordBody)
+
+// 创建平面
+const worldPlan = new CANNON.Plane()
+const worldPlanMaterial = new CANNON.Material()
+const worldPlanBody = new CANNON.Body({
+    shape: worldPlan,
+    mass: 0,
+    position: new CANNON.Vec3(0, -5, 0),
+    material: worldPlanMaterial
+})
+// 绕X轴坐标选装-90°
+worldPlanBody.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), - Math.PI / 2)
+world.addBody(worldPlanBody);
+
+// 设置两种材质发生碰撞时发生的效果。
+const contactMaterial = new CANNON.ContactMaterial(
+    worldMaterial,
+    worldPlanMaterial,
+    {
+        // 摩擦力
+        friction: 0.1,
+        // 弹性
+        restitution: 0.7
+    });
+world.addContactMaterial(contactMaterial);
+
+// 给物理世界的物体（球体）添加碰撞处理函数
+wordBody.addEventListener('collide', collideChange, false)
+function collideChange(e){
+    // 获取音频
+    const hitSound = new Audio(new URL('../assets/metalHit.mp3', import.meta.url).href)
+    // 获取碰撞的强度
+    const impactStrength = e.contact.getImpactVelocityAlongNormal();
+    if(impactStrength > 1){
+        // 播放进度重置为0开始
+        hitSound.currentTime = 0
+        hitSound.play();
+    }
+    console.log(e)
+}
+
+// 给球体施加一个力
+wordBody.applyLocalForce(
+    new CANNON.Vec3(100, 0, 0), // 力的大小和方向
+    new CANNON.Vec3(0, 0, 0), // 受力点
+)
 
 const clock = new THREE.Clock();
 function animate(){
