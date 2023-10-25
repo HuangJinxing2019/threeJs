@@ -88,74 +88,73 @@ void main(){
     //    gl_FragColor = vec4(stength, stength, stength, 1.0);
 
     //   旋转飞镖， 旋转uv
-//    vec2 rotateUv = rotate(vUv, uTime, vec2(0.5, 0.5));
-//    float stength = 0.15 / distance(vec2(rotateUv.x, (rotateUv.y - 0.5) * 5.0 + 0.5), vec2(0.5, 0.5)) - 1.0;
-//    stength += 0.15 / distance(vec2(rotateUv.y, (rotateUv.x - 0.5) * 5.0 + 0.5), vec2(0.5, 0.5)) - 1.0;
-//    gl_FragColor = vec4(stength, stength, stength, 1.0);
+    //    vec2 rotateUv = rotate(vUv, uTime, vec2(0.5, 0.5));
+    //    float stength = 0.15 / distance(vec2(rotateUv.x, (rotateUv.y - 0.5) * 5.0 + 0.5), vec2(0.5, 0.5)) - 1.0;
+    //    stength += 0.15 / distance(vec2(rotateUv.y, (rotateUv.x - 0.5) * 5.0 + 0.5), vec2(0.5, 0.5)) - 1.0;
+    //    gl_FragColor = vec4(stength, stength, stength, 1.0);
 
     // 画一个圆
-//    float stength = step(0.5, distance(vUv, vec2(0.5, 0.5)));
-//    float stength = step(0.5, distance(vUv, vec2(0.5, 0.5)) + 0.25);
-//    float stength = 1.0 - step(0.5, distance(vUv, vec2(0.5, 0.5)) + 0.25);
-//    gl_FragColor = vec4(stength, stength, stength, 1.0);
+    ////    float stength = step(0.5, distance(vUv, vec2(0.5, 0.5)));
+    //    float stength = step(0.5, distance(vUv, vec2(0.5, 0.5)) + 0.25);
+    ////    float stength = 1.0 - step(0.5, distance(vUv, vec2(0.5, 0.5)) + 0.25);
+    //    gl_FragColor = vec4(stength, stength, stength, 1.0);
 
-//    绘制圆环
-//    float stength = step(0.5, distance(vUv, vec2(0.5, 0.5)) + 0.35);
-//    stength *= (1.0 - step(0.5, distance(vUv, vec2(0.5, 0.5)) + 0.25));
-//    gl_FragColor = vec4(stength, stength, stength, 1.0);
+    //    绘制圆环
+    //    float stength = step(0.5, distance(vUv, vec2(0.5, 0.5)) + 0.35);
+    //    stength *= (1.0 - step(0.5, distance(vUv, vec2(0.5, 0.5)) + 0.25));
+    //    gl_FragColor = vec4(stength, stength, stength, 1.0);
 
-//    渐变圆环
-//    float stength = abs(distance(vUv, vec2(0.5, 0.5)) - 0.25);
-//    gl_FragColor = vec4(stength, stength, stength, 1.0);
+    //    渐变圆环
+    //    float stength = abs(distance(vUv, vec2(0.5, 0.5)) - 0.25);
+    //    gl_FragColor = vec4(stength, stength, stength, 1.0);
 
-//    绘制圆环2
-//    float stength = step(0.1, abs(distance(vUv, vec2(0.5, 0.5)) - 0.25));
-//    gl_FragColor = vec4(stength, stength, stength, 1.0);
+    //    绘制圆环2
+    //    float stength = step(0.1, abs(distance(vUv, vec2(0.5, 0.5)) - 0.25));
+    //    gl_FragColor = vec4(stength, stength, stength, 1.0);
 
 
     //  波浪纹
-//    vec2 waveUv = vec2(
-//        vUv.x,
-//        vUv.y + sin(vUv.x * 30.0) * 0.1
-//    );
-//    float stength = 1.0 - step(0.01, abs(distance(waveUv, vec2(0.5, 0.5)) - 0.25));
-//    gl_FragColor = vec4(stength, stength, stength, 1.0);
+    //    vec2 waveUv = vec2(
+    //        vUv.x,
+    //        vUv.y + sin(vUv.x * 30.0) * 0.1
+    //    );
+    //    float stength = 1.0 - step(0.01, abs(distance(waveUv, vec2(0.5, 0.5)) - 0.25));
+    //    gl_FragColor = vec4(stength, stength, stength, 1.0);
 
 
-//    使用atan 获得雷达扫描效果
-//    float stength = atan(vUv.x, vUv.y);
-//    gl_FragColor = vec4(stength, stength, stength, 1.0);
+    //    使用atan 获得雷达扫描效果
+    //    float stength = atan(vUv.x, vUv.y);
+    //    gl_FragColor = vec4(stength, stength, stength, 1.0);
 
-//    float angle = atan(vUv.x - 0.5, vUv.y - 0.5);
-//    float stength = angle;
-//    gl_FragColor = vec4(stength, stength, stength, 1);
+    //    float angle = atan(vUv.x - 0.5, vUv.y - 0.5);
+    //    float stength = angle;
+    //    gl_FragColor = vec4(stength, stength, stength, 1);
 
-//    float angle = atan(vUv.x - 0.5, vUv.y - 0.5);
-//    float stength = (angle + 3.14) / 6.28;
-//    gl_FragColor = vec4(stength, stength, stength, 1);
+    //    float angle = atan(vUv.x - 0.5, vUv.y - 0.5);
+    //    float stength = (angle + 3.14) / 6.28;
+    //    gl_FragColor = vec4(stength, stength, stength, 1);
 
-//    float alpha = 1.0 - step(0.5, distance(vUv, vec2(0.5)));
-//    float angle = atan(vUv.x - 0.5, vUv.y - 0.5);
-//    float stength = (angle + 3.14) / 6.28;
-//    gl_FragColor = vec4(stength, stength, stength, alpha);
+    //    float alpha = 1.0 - step(0.5, distance(vUv, vec2(0.5)));
+    //    float angle = atan(vUv.x - 0.5, vUv.y - 0.5);
+    //    float stength = (angle + 3.14) / 6.28;
+    //    gl_FragColor = vec4(stength, stength, stength, alpha);
 
-//    动态旋转
-//    vec2 rotateUv = rotate(vUv, uTime * 5.0, vec2(0.5));
-//    float alpha = 1.0 - step(0.5, distance(vUv, vec2(0.5)));
-//    float angle = atan(rotateUv.x - 0.5, rotateUv.y - 0.5);
-//    float stength = (angle + 3.14) / 6.28;
-//    gl_FragColor = vec4(stength, stength, stength, alpha);
+    //    动态旋转
+    //    vec2 rotateUv = rotate(vUv, uTime * 5.0, vec2(0.5));
+    //    float alpha = 1.0 - step(0.5, distance(vUv, vec2(0.5)));
+    //    float angle = atan(rotateUv.x - 0.5, rotateUv.y - 0.5);
+    //    float stength = (angle + 3.14) / 6.28;
+    //    gl_FragColor = vec4(stength, stength, stength, alpha);
 
-//    万花筒
-//    float angle = atan(vUv.x - 0.5, vUv.y - 0.5) / (2.0 * PI);
-//    float strength = mod(angle * 10.0, 1.0);
-//    gl_FragColor = vec4(strength, strength, strength, 1.0);
+    //    万花筒
+    //    float angle = atan(vUv.x - 0.5, vUv.y - 0.5) / (2.0 * PI);
+    //    float strength = mod(angle * 10.0, 1.0);
+    //    gl_FragColor = vec4(strength, strength, strength, 1.0);
 
-//    光芒四射
+    //    光芒四射
     float angle = atan(vUv.x - 0.5, vUv.y - 0.5) / (2.0 * PI);
     float strength = sin(angle * 100.0);
     gl_FragColor = vec4(strength, strength, strength, 1.0);
-
 
 
     //    clamp(x, minVal, maxVal),将x值钳于minVal和maxVal之间，意思就是当x < minVal时返回minVal,当x > maxVal时返回maxVal, 当x在minVal和maxVal之间时， 返回x
