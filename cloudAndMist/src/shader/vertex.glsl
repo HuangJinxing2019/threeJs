@@ -28,8 +28,6 @@ varying float vYCoord;
 //    (c - a)* u.y * (1.0 - u.x) +
 //    (d - b) * u.x * u.y;
 //}
-
-
 vec4 permute(vec4 x)
 {
     return mod(((x*34.0)+1.0)*x, 289.0);
