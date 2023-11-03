@@ -3,6 +3,7 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
 import * as THREE from "three";
 import VERTEX_SOURCE from "../shader/flyLightVertex.glsl?raw";
 import FRAGMENT_SOURCE from "../shader/flyLightGragment.glsl?raw";
+import * as dat from "dat.gui";
 export default class FlyLight{
     constructor(scene) {
         this.scene = scene;
@@ -28,7 +29,7 @@ export default class FlyLight{
     setPosition(number){
         for (let i = 0; i < number; i++) {
             let flyLight = this.gltf.scene.clone(true);
-            let y = Math.random() * 80 + 15;
+            let y = Math.random() * 60 + 4;
             let x = (Math.random() - 0.5) * 300;
             let z = (Math.random() - 0.5) * 300;
             flyLight.position.set(x, y, z)

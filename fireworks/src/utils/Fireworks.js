@@ -3,6 +3,7 @@ import POINT_VERTEX_SOURCE from '../shader/pointVertex.glsl?raw';
 import POINT_FRAGMENT_SOURCE from  '../shader/pointFragment.glsl?raw';
 import FIREWORKS_VERTEX_SOURCE from '../shader/fireworksVertex.glsl?raw';
 import FIREWORKS_FRAGMENT_SOURCE from  '../shader/fireworksFragment.glsl?raw';
+import {AudioLoader} from "three";
 
 export default class Fireworks{
     constructor({scene, startPosition, endPosition, color = '#ffff00', renderer}) {
@@ -13,6 +14,19 @@ export default class Fireworks{
         this.isBlow = false;
         this.color = new THREE.Color(color);
         this.renderer = renderer
+        this.sendAudio = this.initAudio(new URL('../audio/send.mp3', import.meta.url).href);
+        this.blowAudio = this.initAudio(new URL(`../audio/pow${Math.ceil(Math.random() * 4)}.ogg`, import.meta.url).href);
+    }
+    initAudio(url){
+       const audioListener = new THREE.AudioListener();
+       const audio = new THREE.Audio(audioListener);
+       const audioLoader = new AudioLoader();
+       audioLoader.load(url, function (buffer){
+           audio.setBuffer(buffer);
+           audio.setLoop(false);
+           audio.setVolume(1);
+       });
+       return audio
     }
     send(size = 10.0){
         this.sendSize = size;
@@ -47,6 +61,10 @@ export default class Fireworks{
         });
         this.startFirework = new THREE.Points(this.bufferGeometry, this.shaderMaterial);
         this.scene.add(this.startFirework)
+        setTimeout(() => {
+            this.sendAudio.play();
+        }, 40)
+
     }
     blow(){
         this.isBlow = true;
@@ -80,19 +98,14 @@ export default class Fireworks{
         })
         this.blowPoints = new THREE.Points(this.blowBufferGeometry, this.blowMaterial)
         this.scene.add(this.blowPoints)
-        // if(this.renderer.toneMappingExposure < 0.4){
-        //     this.renderer.toneMappingExposure += 0.05
-        //     setTimeout(() => {
-        //         this.renderer.toneMappingExposure -= 0.05
-        //     }, 500)
-        // }
+        this.blowAudio.play();
     }
     // 设置场景的曝光强度
     setToneMappingExposure(time){
         if(time < 0.2 && this.renderer.toneMappingExposure < 0.4){
             this.renderer.toneMappingExposure += time * 0.08
-        } else if (time < 0.4 && this.renderer.toneMappingExposure > 0.1){
-            this.renderer.toneMappingExposure -= time * 0.03
+        } else if (time < 0.7 && this.renderer.toneMappingExposure > 0.1){
+            this.renderer.toneMappingExposure -= time * 0.006
         }
     }
     setBlowPosition(num){
