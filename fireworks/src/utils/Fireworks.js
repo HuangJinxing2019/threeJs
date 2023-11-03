@@ -80,11 +80,19 @@ export default class Fireworks{
         })
         this.blowPoints = new THREE.Points(this.blowBufferGeometry, this.blowMaterial)
         this.scene.add(this.blowPoints)
-        if(this.renderer.toneMappingExposure < 0.4){
-            this.renderer.toneMappingExposure += 0.05
-            setTimeout(() => {
-                this.renderer.toneMappingExposure -= 0.05
-            }, 500)
+        // if(this.renderer.toneMappingExposure < 0.4){
+        //     this.renderer.toneMappingExposure += 0.05
+        //     setTimeout(() => {
+        //         this.renderer.toneMappingExposure -= 0.05
+        //     }, 500)
+        // }
+    }
+    // 设置场景的曝光强度
+    setToneMappingExposure(time){
+        if(time < 0.2 && this.renderer.toneMappingExposure < 0.4){
+            this.renderer.toneMappingExposure += time * 0.08
+        } else if (time < 0.4 && this.renderer.toneMappingExposure > 0.1){
+            this.renderer.toneMappingExposure -= time * 0.03
         }
     }
     setBlowPosition(num){
@@ -116,6 +124,7 @@ export default class Fireworks{
             this.shaderMaterial.uniforms.uTime.value = time
         } else {
             if(!this.isBlow) this.blow()
+            this.setToneMappingExposure(time - 1)
             this.blowMaterial.uniforms.uTime.value = (time - 1)
             if(time > 3){
                 this.clearFireworks()

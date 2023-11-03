@@ -9,7 +9,7 @@ const height = window.innerHeight;
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(width, height, false);
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 0.2;
+renderer.toneMappingExposure = 0.1;
 
 const fireworksArr = [];
 
@@ -53,7 +53,6 @@ function sendFireworks(){
         z: (Math.random() - 0.9) * 20,
     };
     const color = `hsl(${Math.floor(Math.random() * 360)}, 100%, 80%)`;
-    console.log(color)
     let fireworks = new Fireworks({scene, startPosition, endPosition, color, renderer});
     fireworks.send(40.0);
     fireworksArr.push(fireworks);
