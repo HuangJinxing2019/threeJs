@@ -1,6 +1,5 @@
 import  * as THREE from 'three'
 import { OrbitControls } from "three/addons/controls/OrbitControls";
-import {shader} from "three/nodes";
 import {GLTFLoader} from "three/addons/loaders/GLTFLoader";
 
 const width = window.innerWidth;
