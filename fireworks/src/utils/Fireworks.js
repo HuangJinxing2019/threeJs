@@ -104,7 +104,7 @@ export default class Fireworks{
     setToneMappingExposure(time){
         if(time < 0.2 && this.renderer.toneMappingExposure < 0.4){
             this.renderer.toneMappingExposure += time * 0.08
-        } else if (time < 0.7 && this.renderer.toneMappingExposure > 0.1){
+        } else if (this.renderer.toneMappingExposure > 0.1){
             this.renderer.toneMappingExposure -= time * 0.006
         }
     }
