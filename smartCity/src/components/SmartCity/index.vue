@@ -5,8 +5,11 @@
 <script setup>
   import { ref, onMounted } from "vue";
   import { useBasicScene } from '@/hooks/three'
+  import useCity from "./useCityHook.js";
   const cityScene = ref(null)
-  const [scene, { render }] = useBasicScene();
+  const [scene, { render }] = useBasicScene({ cameraPosition: { x: 0, y: 7, z: 15 } });
+  useCity(scene);
+
   onMounted(() => {
     render(cityScene.value);
   })
