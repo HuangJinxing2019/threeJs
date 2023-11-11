@@ -20,7 +20,7 @@ export default function useBasicScene(options) {
     let isAppend = false;
     let elDom = null;
 
-    const renderer = new THREE.WebGLRenderer();
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(90, width / height, 0.1, 1000);
     if(options.showHelper){
@@ -64,6 +64,8 @@ export default function useBasicScene(options) {
     function animateRender(){
         requestAnimationFrame(animateRender)
         renderer.render(scene, camera)
+        orbitControls.update();
+        // camera.updateProjectionMatrix()
     }
     onMounted(() => {
         window.addEventListener('resize', setRenderSize, false)
@@ -72,5 +74,5 @@ export default function useBasicScene(options) {
         window.removeEventListener('resize', setRenderSize)
     })
 
-    return [ scene, { render }]
+    return [ scene, { render, camera, orbitControls }]
 }

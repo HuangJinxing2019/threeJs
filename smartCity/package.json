@@ -9,10 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.6.1",
     "dat.gui": "^0.7.9",
     "gsap": "^3.12.2",
+    "mockjs": "^1.1.0",
+    "pinia": "^2.1.7",
     "sass": "^1.69.5",
     "three": "^0.158.0",
+    "vite-plugin-mock": "2.9.6",
     "vue": "^3.3.4"
   },
   "devDependencies": {

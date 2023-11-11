@@ -30,12 +30,16 @@ export default function useFlyLine({ points, color }){
         blending: THREE.AdditiveBlending,
     });
     const point = new THREE.Points(bufferGeometry, shaderMaterial);
-
     gsap.to(shaderMaterial.uniforms.uTime, {
         value: 1000,
         duration: 3,
         repeat: -1,
         ease: 'none',
     })
-    return [point]
+    function remove(){
+        point.removeFromParent();
+        point.material.dispose();
+        point.geometry.dispose();
+    }
+    return [point, { remove }]
 }
